@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../providers/product.dart';
@@ -27,15 +29,42 @@ class ProductScreen extends ConsumerWidget {
             if (product.brand != null) (label: 'Brand', text: product.brand!),
             (label: 'Stock', text: product.stock.toString()),
           ];
-          return ListView.builder(
-            itemCount: records.length,
-            itemBuilder: (_, index) {
-              final record = records[index];
-              return ListTile(
-                title: Text(record.label),
-                subtitle: Text(record.text),
-              );
-            },
+          return Column(
+            children: [
+              SizedBox(
+                height: 0.6.sh,
+                child: ListView.builder(
+                  itemCount: records.length,
+                  itemBuilder: (_, index) {
+                    final record = records[index];
+                    return ListTile(
+                      title: Text(record.label),
+                      subtitle: Text(record.text),
+                    );
+                  },
+                ),
+              ),
+              SizedBox(height: 0.02.sh),
+              ListTile(
+                title: const Text('test dialog'),
+                subtitle: const Text('smart dialog router'),
+                onTap: () {
+                  SmartDialog.show(builder: (context) {
+                    return Container(
+                      height: 80,
+                      width: 180,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      alignment: Alignment.center,
+                      child: const Text('easy custom dialog',
+                          style: TextStyle(color: Colors.white)),
+                    );
+                  });
+                },
+              ),
+            ],
           );
         },
       ),

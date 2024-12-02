@@ -30,6 +30,13 @@ class ProductsScreen extends ConsumerWidget {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.go('/todos');
+        },
+        tooltip: 'Add todo',
+        child: const Icon(Icons.arrow_forward_ios_outlined),
+      ),
     );
   }
 }
