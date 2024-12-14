@@ -6,6 +6,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:loggy/loggy.dart';
 
 import 'features/settings/providers/settings.dart';
 import 'services/router.dart';
@@ -20,6 +21,9 @@ Future<void> main() async {
   // We preserve the native splash screen, which will then removed once the main
   // app is inserted to the widget tree.
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  Loggy.initLoggy(
+    logPrinter: const PrettyPrinter(),
+  );
 
   HttpOverrides.global = _HttpOverrides();
 
